@@ -48,13 +48,11 @@ UKF::UKF() {
   // Initial covariance matrix
   P_ = MatrixXd::Identity(n_x_, n_x_);
 
-  // TODO parameter tuning
-  
   // Process noise standard deviation longitudinal acceleration in m/s^2
-  std_a_ = 30;
+  std_a_ = 0.2;
 
   // Process noise standard deviation yaw acceleration in rad/s^2
-  std_yawdd_ = 30;
+  std_yawdd_ = 0.2;
 
   // Laser measurement noise standard deviation position1 in m
   std_laspx_ = 0.15;
@@ -99,24 +97,14 @@ UKF::~UKF() {}
 void UKF::ProcessMeasurement(MeasurementPackage &measurement_package) {
 
   if (!is_initialized_) {
-    if (measurement_package.sensor_type_ == MeasurementPackage::RADAR) {
-      x_ << measurement_package.raw_measurements_[0],
-            measurement_package.raw_measurements_[1],
-            0,
-            0,
-            0;
-    }
-    else if (measurement_package.sensor_type_ == MeasurementPackage::LASER) {
-      x_ << measurement_package.raw_measurements_[0],
-            measurement_package.raw_measurements_[1],
-            0,
-            0,
-            0;
-    }
+    x_ << measurement_package.raw_measurements_[0],
+          measurement_package.raw_measurements_[1],
+          0,
+          0,
+          0;
     
     previous_timestamp_ = measurement_package.timestamp_;
     
-    // Done initializing, no need to predict or update
     is_initialized_ = true;
     return;
   }
