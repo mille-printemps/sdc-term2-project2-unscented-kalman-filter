@@ -44,23 +44,25 @@ public:
   // State covariance matrix
   MatrixXd P_;
   
-  // Mesurement matrix
+  // Mesurement matrix for lidar
   MatrixXd H_laser_;
   
-  // Measurement covariance matrix
+  // Measurement covariance matrix for lidar
   MatrixXd R_laser_;
   
-  // Measurement covariance matrix
+  // Measurement covariance matrix for radar
   MatrixXd R_radar_;
 
   // Predicted sigma points matrix
   MatrixXd Xsig_pred_;
   
-  //
+  // Measurement sigma points matrix
   MatrixXd Zsig_;
   
+  // Predicted measurement mean
   VectorXd z_pred_;
   
+  // Predicted measurement covariance matrix
   MatrixXd S_;
   
 
