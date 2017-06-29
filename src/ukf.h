@@ -32,6 +32,9 @@ public:
   // Augmented state dimension
   int n_aug_;
   
+  // Sigma dimension
+  int n_s_;
+
   // Sigma point spreading parameter
   double lambda_;
   
