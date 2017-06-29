@@ -1,3 +1,4 @@
+#include <math.h>
 #include <iostream>
 #include "tools.h"
 
@@ -29,12 +30,6 @@ VectorXd Tools::CalculateRMSE(const vector<VectorXd> &estimations,
   return rmse.array().sqrt();
 }
 
-double Tools::NormalizeAngle(double angle) {
-  while (M_PI < angle) {
-    angle -= 2.0 * M_PI;
-  }
-  while (angle < -M_PI) {
-    angle += 2.0 * M_PI;
-  }
-  return angle;
+double Tools::NormalizeAngle(double phi) {
+  return  atan2(sin(phi), cos(phi));
 }
